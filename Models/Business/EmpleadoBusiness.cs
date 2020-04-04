@@ -56,20 +56,20 @@ namespace CRUD.Models.Business
             await using (_context)
             {
                 IEnumerable<EmpleadoDetalle> listaEmpleadoDetalles =
-                (from empleado in _context.Empleados
-                 join cargo in _context.cargoEmpleados
-                 on empleado.Cargo equals
-                 cargo.IdCargo
-                 where (empleado.Nombre.Contains(busqueda) || empleado.Documento.ToString().Equals(busqueda))
-                 select new EmpleadoDetalle
-                 {
-                     IdEmpleado = empleado.IdEmpleado,
-                     Nombre = empleado.Nombre,
-                     Cargo = cargo.Cargo,
-                     Telefono = empleado.Telefono,
-                     Documento = empleado.Documento
+                                                        (from empleado in _context.Empleados
+                                                         join cargo in _context.cargoEmpleados
+                                                         on empleado.Cargo equals
+                                                         cargo.IdCargo
+                                                         where (empleado.Nombre.Contains(busqueda) || empleado.Documento.ToString().Contains(busqueda))
+                                                         select new EmpleadoDetalle
+                                                         {
+                                                             IdEmpleado = empleado.IdEmpleado,
+                                                             Nombre = empleado.Nombre,
+                                                             Cargo = cargo.Cargo,
+                                                             Telefono = empleado.Telefono,
+                                                             Documento = empleado.Documento
 
-                 }).ToList();
+                                                         }).ToList();
                 return listaEmpleadoDetalles;
             }
         }
