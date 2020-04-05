@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CRUD.Models.Entities.CargoEmpleado>
+
+@{
+    ViewData["Title"] = "Cargos";
+}
+
+<h1>CARGOS</h1>
+
+<p>
+    <a asp-action="CreareditarCargo">Crear cargo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo)
+            </td>
+            <td>
+                <a asp-action="CreareditarCargo" asp-route-id="@item.IdCargo">Editar</a> |
+                |
+                <a asp-action="EliminarCargo" asp-route-id="@item.IdCargo"  class="text-danger m1-1" onclick="return confirm ('Deseas eliminar este cargo?')"><i class="fa fa-trash-alt fa-lg"></i>Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
